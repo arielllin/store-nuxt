@@ -45,7 +45,7 @@ import MenuCard from '@/components/MenuCard'
 import { mapActions, mapState } from 'vuex'
 
 export default {
-  name: 'Shop',
+  name: 'ShopList',
   components: {
     Banner,
     MenuCard

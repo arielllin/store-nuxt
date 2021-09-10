@@ -13,7 +13,9 @@ module.exports = {
       },
       width: {
         desktop: '1240px',
-        article: '983px'
+        article: '983px',
+        1: '1%',
+        100000: '10000%'
       },
       height: {
         map: '420px',

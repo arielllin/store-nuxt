@@ -1,10 +1,10 @@
+// import { resolve } from 'path'
+const path = require('path')
+
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'foodie-nuxt',
-    htmlAttrs: {
-      lang: 'en'
-    },
+    htmlAttrs: { lang: 'en' },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -13,51 +13,24 @@ export default {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
-  // Global CSS: https://go.nuxtjs.dev/config-css
-  css: ['swiper/swiper-bundle.css'],
+  css: [],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    { src: '~/plugins/axios' },
-    { src: '~/plugins/nuxt-swiper-plugin', mode: 'client' }
-  ],
+  plugins: [{ src: '~/plugins/axios' }, { src: '~/plugins/svg-icon' }],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     [
       '@nuxtjs/dotenv',
       { filename: process.env.BASE ? `.env.${process.env.BASE}` : '.env' }
     ],
     ['@nuxtjs/router', {}],
-    // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
-    // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss',
-    [
-      'nuxt-scss-to-js',
-      {
-        /* module options */
-      }
-    ]
+    '@nuxtjs/tailwindcss'
   ],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    [
-      'nuxt-i18n',
-      {
-        /* module options */
-      }
-    ],
-    // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios',
-    '@nuxtjs/svg'
-  ],
+  modules: [['nuxt-i18n', {}], '@nuxtjs/axios'],
 
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     proxy: true
   },
@@ -74,8 +47,31 @@ export default {
     USER_KEY: process.env.USER_KEY
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extend(config, ctx) {
+      // 排除 nuxt 原配置的影响,Nuxt 默认有vue-loader,会处理svg,img等
+      // 找到匹配.svg的规则,然后将存放svg文件的目录排除
+      const svgRule = config.module.rules.find(rule => rule.test.test('.svg'))
+      svgRule.exclude = [path.resolve(__dirname, 'assets/icons/svg')]
+      // 添加loader规则
+      config.module.rules.push({
+        test: /\.svg$/, // 匹配.svg
+        include: [path.resolve(__dirname, 'assets/icons/svg')], // 将存放svg的目录加入到loader处理目录
+        loader: 'svg-sprite-loader',
+        options: { symbolId: 'icon-[name]' }
+        // use: [
+        //   { loader: 'svg-sprite-loader', options: { symbolId: 'icon-[name]' } }
+        // ]
+      })
+    },
+    babel: {
+      babelrc: false,
+      plugins: [
+        ['@babel/plugin-proposal-class-properties', { loose: true }],
+        ['@babel/plugin-proposal-private-methods', { loose: true }],
+        ['@babel/plugin-proposal-private-property-in-object', { loose: true }]
+      ]
+    },
     postcss: {
       plugins: {
         // 通过传递 false 来禁用插件

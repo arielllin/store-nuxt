@@ -10,12 +10,12 @@ export function getCategories() {
   })
 }
 
-export function getCities() {
+export function getCities(city_ids = 280) {
   return request({
     url: '/api/v2.1/cities',
     method: 'GET',
     params: {
-      city_ids: 280
+      city_ids
     }
   })
 }
@@ -60,12 +60,12 @@ export function getRestaurants() {
   })
 }
 
-export function getRestaurant(Id) {
+export function getRestaurant(res_id) {
   return request({
     url: '/api/v2.1/restaurant',
     method: 'GET',
     params: {
-      res_id: Id
+      res_id
     }
   })
 }

@@ -3,7 +3,7 @@
     <div class="flex flex-col xl:w-desktop xl:flex-row m-auto">
       <div class="flex justify-center flex-quarter px-6">
         <div class="">
-          <img src="@/assets/icons/svg/taco_tuesday.svg">
+          <svg-icon icon-class="taco_tuesday" />
         </div>
       </div>
       <div class="form-desktop">
@@ -42,7 +42,7 @@ export default {
     return {
       footerInfo: [
         {
-          icon: require('@/assets/icons/svg/location.svg'),
+          icon: 'location',
           info: [
             'FOODIE',
             'PO Box 123456',
@@ -51,14 +51,14 @@ export default {
           ]
         },
         {
-          icon: require('@/assets/icons/svg/mobile.svg'),
+          icon: 'mobile',
           info: [
             'Phone: (212) 777-7773',
             'Fax: (212) 777-7773'
           ]
         },
         {
-          icon: require('@/assets/icons/svg/email.svg'),
+          icon: 'email',
           info: [
             'support@yourname.com'
           ]

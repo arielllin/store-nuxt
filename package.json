@@ -18,18 +18,16 @@
     "eslint-webpack-plugin": "^2.5.4",
     "nuxt": "^2.15.3",
     "nuxt-i18n": "^6.27.0",
-    "nuxt-scss-to-js": "^1.0.4",
     "nuxt-validate": "^1.0.1",
     "postcss-hexrgba": "^2.0.1",
     "postcss-responsive-type": "^1.0.0",
-    "swiper": "^6.7.5",
+    "swiper": "^6.8.1",
     "vue-awesome-swiper": "^4.1.1"
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",
     "@nuxtjs/eslint-config": "^6.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
-    "@nuxtjs/svg": "^0.1.12",
     "@nuxtjs/tailwindcss": "^4.2.0",
     "autoprefixer": "^10.2.6",
     "babel-eslint": "^10.1.0",
@@ -39,6 +37,7 @@
     "eslint-plugin-vue": "^7.7.0",
     "postcss": "^8.3.5",
     "postcss-loader": "^4.2.0",
+    "svg-sprite-loader": "^6.0.9",
     "tailwindcss": "^2.2.4"
   }
 }
